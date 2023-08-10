@@ -1,0 +1,30 @@
+@model List<Chef>
+
+<body class="bg-dark text-light">
+
+    <div class="text-center">
+        <a asp-controller="Chef" asp-action="AllChefs">Chefs</a> |
+        <a asp-controller="Dish" asp-action="Index">Dishes</a> |
+        <a asp-controller="Chef" asp-action="NewChef">Add a Chef</a> |
+        <a asp-controller="Dish" asp-action="NewDish">Add a Dish</a>
+    </div>
+    <h1>Check out our chef roster!</h1>
+    <hr>
+
+
+    <table class="table text-light">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th># of Dishes</th>
+        </tr>
+        @foreach (Chef i in Model)
+        {
+            <tr>
+                <td>@i.ChefFirstName @i.ChefLastName</td>
+                <td>@(DateTime.Now.Year - i.Dob.Year)</td>
+                <td>@i.DishesByChefs.Count</td>
+            </tr>
+        }
+    </table>
+</body>

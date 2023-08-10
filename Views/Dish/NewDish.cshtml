@@ -1,0 +1,61 @@
+@model Dish
+
+<body class="bg-dark text-light">
+
+    <div class="text-center">
+        <a asp-controller="Chef" asp-action="AllChefs">Chefs</a> |
+        <a asp-controller="Dish" asp-action="Index">Dishes</a> |
+        <a asp-controller="Chef" asp-action="NewChef">Add a Chef</a> |
+        <a asp-controller="Dish" asp-action="NewDish">Add a Dish</a>
+    </div>
+
+        <h1>Add a Dish</h1>
+        <hr>
+
+        <form asp-action="CreateDish" asp-controller="Dish" method="post" class="col-8">
+            <div class="mb-3">
+                <label asp-for="DishName"></label>
+                <input asp-for="DishName" class="form-control" />
+                <span asp-validation-for="DishName" class="text-danger font-weight-bold"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Tastiness"> Tastiness Level:</label>
+                <select class="form-select" asp-for="Tastiness" size="1" aria-label="Size 3 select example">
+                    <option selected>Choose a Level</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                </select>
+                <span asp-validation-for="Tastiness" class="text-danger font-weight-bold"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ChefId">Chef:</label>
+                <select class="form-select" asp-for="ChefId" size="1" aria-label="Size 3 select example">
+                    <option selected>Choose a Chef</option>
+                    @foreach (Chef i in ViewBag.allChefs)
+                    {
+                        <option value=@i.ChefId >@i.ChefFirstName @i.ChefLastName </option>
+                    }
+                </select>
+                <span asp-validation-for="ChefId" class="text-danger font-weight-bold"></span>
+            </div>
+
+
+
+            <div class="mb-3">
+                <label asp-for="Calories"></label>
+                <input asp-for="Calories" class="form-control" />
+                <span asp-validation-for="Calories" class="text-danger font-weight-bold"></span>
+            </div>
+
+            <div class="btn">
+                <input class="btn btn-outline-light" type="submit" value="Add Post">
+            </div>
+        </form>
+    
+
+</body>
